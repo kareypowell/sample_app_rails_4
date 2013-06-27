@@ -6,6 +6,17 @@ def valid_signin(user)
 	click_button submit
 end
 
+def create_valid_user
+	fill_in "Name", 				with: "Example User"
+	fill_in "Email", 				with: "user@example.com"
+	fill_in "Password", 		with: "foobar"
+	fill_in "Confirmation", with: "foobar"
+end
+
+def find_user_by_email(user_email)
+	User.find_by(email: user_email)
+end
+
 RSpec::Matchers.define :have_error_message do |message|
 	match do |page|
 		expect(page).to have_selector('div.alert.alert-error', text: message)
