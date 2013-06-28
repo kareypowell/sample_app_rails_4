@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 	end
 
   def new
-  	# signed_in? ? admin_user : @user = User.new
     @user = User.new
   end
 
