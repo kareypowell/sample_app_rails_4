@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user,  only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,    only: [:edit, :update]
-  before_action :admin_user,      only: :destroy
+  before_action :signed_in_user,     only: [:index, :edit, :update, :destroy]
+  before_action :correct_user,       only: [:edit, :update]
+  before_action :admin_user,         only: :destroy
+  before_action :action_not_allowed, only: :new
+  rescue_from ActiveRecord::RecordNotFound, with: :action_not_allowed
 
   def index
     @users = User.paginate(page: params[:page])
@@ -12,7 +14,8 @@ class UsersController < ApplicationController
 	end
 
   def new
-  	@user = User.new
+  	# signed_in? ? admin_user : @user = User.new
+    @user = User.new
   end
 
   def create
@@ -68,5 +71,10 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+    end
+
+    def action_not_allowed
+      logger.error "Attempt to access #{params[:action]} action while signed in."
+      redirect_to user_path(current_user), notice: 'That action is not allowed.' if signed_in?
     end
 end
