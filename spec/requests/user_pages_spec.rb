@@ -18,7 +18,7 @@ describe "UserPages" do
 	    before(:all) 	{ 30.times { FactoryGirl.create(:user) } }
 	    after(:all) 	{ User.delete_all }
 
-	    it { should have_selector('div.pagination') }
+	    it { should have_pagination }
 
 	    it "should list each user" do
 				User.paginate(page: 1) do |user|

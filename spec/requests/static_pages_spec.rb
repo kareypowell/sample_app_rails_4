@@ -29,8 +29,21 @@ describe "Static pages" do
       it "should render the user's feed" do
         user.feed.each do |item|
           expect(page).to have_selector("li##{item.id}", text: item.content)
-        end        
+        end
       end
+
+      # it "should paginate the micropost feed" do
+      #   should have_pagination
+      # end
+
+      # it "should display number of micropost(s) with pluralization" do
+      #   expect(page).to have_selector('span', 
+      #                               text: "#{user.microposts.count} microposts")
+      #   expect { click_link "delete" }.to change(user.microposts, :count).by(-1)
+      #   expect(page).to have_selector('span', 
+      #                               text: "#{user.microposts.count} micropost")
+      # end
+
     end
   end
 
