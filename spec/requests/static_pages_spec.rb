@@ -32,18 +32,15 @@ describe "Static pages" do
         end
       end
 
-      # it "should paginate the micropost feed" do
-      #   should have_pagination
-      # end
+      it "should display user name in the sidebar" do
+        expect(page).to have_selector('section h1', text: user.name)
+      end
 
-      # it "should display number of micropost(s) with pluralization" do
-      #   expect(page).to have_selector('span', 
-      #                               text: "#{user.microposts.count} microposts")
-      #   expect { click_link "delete" }.to change(user.microposts, :count).by(-1)
-      #   expect(page).to have_selector('span', 
-      #                               text: "#{user.microposts.count} micropost")
-      # end
-
+      # Come back and cleanup this test.
+      it "should pluralize microposts count" do
+        expect(page).to have_selector('span', 
+                                    text: "#{user.microposts.count} microposts")
+      end
     end
   end
 
