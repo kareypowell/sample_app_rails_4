@@ -15,8 +15,11 @@ update_chars_left = (max_length, target_input, display_element) ->
   else
     display_element.html max_length - text_length
 
-$(document).ready ->
+ready = ->
   $("#micropost_content").keyup ->
     update_chars_left 140, $("#micropost_content")[0], $("#chars_left")
 
   update_chars_left 140, $("#micropost_content")[0], $("#chars_left")
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
