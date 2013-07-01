@@ -32,15 +32,25 @@ describe "Static pages" do
         end
       end
 
-      it "should display user name in the sidebar" do
-        expect(page).to have_selector('section h1', text: user.name)
+      # Come back and cleanup tests
+      describe "sidebar details" do
+        it { should have_selector('section h1', text: user.name) }
+        it { should have_selector('span', text: "#{user.microposts.count} microposts") }
+        it { should_not have_selector('span', text: "1 microposts") }
+        it { should_not have_selector('span', text: "0 microposts") }
       end
 
-      # Come back and cleanup this test.
-      it "should pluralize microposts count" do
-        expect(page).to have_selector('span', 
-                                    text: "#{user.microposts.count} microposts")
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 followers", href: followers_user_path(user)) }
       end
+
     end
   end
 
