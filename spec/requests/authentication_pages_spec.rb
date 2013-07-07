@@ -139,7 +139,7 @@ describe "Authentication" do
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: 'wrong@example.com') }
-      before { sign_in user }
+      before { sign_in user, no_capybara: true }
 
       describe "visiting Users#edit page" do
         before { visit edit_user_path(wrong_user) }
@@ -156,7 +156,7 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
 
-      before { sign_in non_admin }
+      before { sign_in non_admin, no_capybara: true }
 
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
@@ -165,7 +165,7 @@ describe "Authentication" do
 
       describe "when trying to access the Users#new action" do
         before do 
-          sign_in user
+          sign_in user, no_capybara: true
           get new_user_path
         end
         specify { expect(response).to redirect_to user_path(user) }
@@ -173,7 +173,7 @@ describe "Authentication" do
 
       describe "when trying to access the Users#create action" do
         before do
-          sign_in user
+          sign_in user, no_capybara: true
           get "/users/create"
         end
         specify { expect(response).to redirect_to user_path(user) }
