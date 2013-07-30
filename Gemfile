@@ -42,7 +42,7 @@ gem 'uglifier', '2.1.2'
 gem 'coffee-rails', '4.0.0'
 gem 'jquery-rails', '2.2.1'
 gem 'turbolinks', '1.3.0'
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.5.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -64,5 +64,6 @@ end
 group :production do
   gem 'pg', '0.16.0'
   gem 'rails_12factor'
+  gem 'thin', '~> 1.5.1'
 end
 
