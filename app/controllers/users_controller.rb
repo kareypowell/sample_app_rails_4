@@ -10,24 +10,24 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
-	def show
-		@user = User.find(params[:id])
+  def show
+    @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-	end
+  end
 
   def new
     @user = User.new
   end
 
   def create
-  	@user = User.new(user_params)
-  	if @user.save
+    @user = User.new(user_params)
+    if @user.save
       sign_in @user
-  		flash[:success] = "Welcome to the Sample App"
-  		redirect_to @user
-  	else
-  		render 'new'
-  	end
+      flash[:success] = "Welcome to the Sample App"
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -65,10 +65,10 @@ class UsersController < ApplicationController
 
   private
 
-  	def user_params
-  		params.require(:user).permit(:name, :email, :password, 
-  																 :password_confirmation)
-  	end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, 
+                                   :password_confirmation)
+    end
 
     # Before filters
 

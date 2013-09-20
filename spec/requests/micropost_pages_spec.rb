@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "Micropost pages" do
 
-	subject { page }
+  subject { page }
 
-	let(:user) { FactoryGirl.create(:user) }
-	before { sign_in user }
+  let(:user) { FactoryGirl.create(:user) }
+  before { sign_in user }
 
   describe "micropost creation" do
     before { visit root_path }
@@ -26,7 +26,7 @@ describe "Micropost pages" do
       before { fill_in 'micropost_content', with: "Lorem ipsum" }
 
       it "should create a micropost" do
-				expect { click_button "Post" }.to change(Micropost, :count).by(1)        
+        expect { click_button "Post" }.to change(Micropost, :count).by(1)        
       end
     end
   end
@@ -38,8 +38,8 @@ describe "Micropost pages" do
       before { visit root_path }
 
       it "should delete a micropost" do
-				expect { click_link "delete" }.to change(Micropost, :count).by(-1)      
-	    end
+        expect { click_link "delete" }.to change(Micropost, :count).by(-1)      
+      end
     end
   end
 
