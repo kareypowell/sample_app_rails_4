@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.3.2.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.2.0'
-gem 'will_paginate', '3.0.4'
+gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
 
 
@@ -14,7 +14,7 @@ group :development, :test do
   gem 'pg', '0.17.0'
   gem 'rspec-rails', '2.13.2'
   # The following optional lines are part of the advanced setup.
-  gem 'guard-rspec', '3.0.3'
+  gem 'guard-rspec', '3.1.0'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
   gem 'guard-spork', '1.5.1'
   gem 'childprocess', '0.3.9'
